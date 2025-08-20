@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wally's Adventures - Freedom, Joy & Healing in the Outdoors</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2d3748;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(45, 55, 72, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e2e8f0;
+            font-family: 'Georgia', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e2e8f0;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #68d391;
+        }
+
+        .cta-btn {
+            background: #38a169;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .cta-btn:hover {
+            background: #2f855a;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(45, 55, 72, 0.7), rgba(45, 55, 72, 0.7)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23048566" width="1200" height="800"/><path fill="%23065f46" d="M0,400 Q300,200 600,400 T1200,400 L1200,800 L0,800 Z"/><circle fill="%23047857" cx="200" cy="150" r="60"/><circle fill="%23047857" cx="800" cy="180" r="40"/><circle fill="%23047857" cx="1000" cy="120" r="30"/></svg>') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 1;
+            position: relative;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            line-height: 1.2;
+            animation: slideInUp 1s ease;
+        }
+
+        .hero .tagline {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            font-style: italic;
+            animation: slideInUp 1s ease 0.3s both;
+        }
+
+        .hero-buttons {
+            animation: slideInUp 1s ease 0.6s both;
+        }
+
+        .hero-buttons .cta-btn {
+            margin: 0 1rem;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #2d3748;
+        }
+
+        /* Story Section */
+        .story {
+            padding: 6rem 2rem;
+            background: #f7fafc;
+        }
+
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .story h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #2d3748;
+            font-weight: 400;
+        }
+
+        .story-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .story-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .story-text em {
+            font-style: italic;
+            color: #38a169;
+            font-weight: 600;
+        }
+
+        .pullquote {
+            font-size: 1.8rem;
+            font-style: italic;
+            color: #38a169;
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            border-left: 4px solid #38a169;
+            background: white;
+            border-radius: 4px;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 6rem 2rem;
+            background: #2d3748;
+            color: white;
+            text-align: center;
+        }
+
+        .mission-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .mission h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .mission p {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .mission-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .mission-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #68d391;
+        }
+
+        /* What We Offer */
+        .offerings {
+            padding: 6rem 2rem;
+        }
+
+        .offerings-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+            font-weight: 400;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 4rem;
+        }
+
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .offering-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #38a169;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .offering-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .offering-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .offering-card p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .offering-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .offering-card li {
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .offering-card li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #38a169;
+            font-weight: bold;
+        }
+
+        /* Testimonial */
+        .testimonial {
+            padding: 4rem 2rem;
+            background: #f0fff4;
+        }
+
+        .testimonial-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial blockquote {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .testimonial cite {
+            font-size: 1.1rem;
+            color: #38a169;
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: #2d3748;
+            color: white;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #68d391;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a202c;
+            color: #a0aec0;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-footer {
+            font-size: 1.5rem;
+            color: #e2e8f0;
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .story h2 {
+                font-size: 2.2rem;
+            }
+
+            .story-text {
+                font-size: 1.1rem;
+            }
+
+            .pullquote {
+                font-size: 1.4rem;
+                margin: 2rem 0;
+                padding: 1.5rem;
+            }
+
+            .hero-buttons .cta-btn {
+                display: block;
+                margin: 1rem auto;
+                width: fit-content;
+            }
+
+            .offerings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Fade in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Wally's Adventures</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#story">Our Story</a></li>
+                <li><a href="#offerings">What We Offer</a></li>
+                <li><a href="#contact">Connect</a></li>
+            </ul>
+            <a href="#contact" class="cta-btn">Start Your Journey</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Find Your Freedom</h1>
+            <p class="tagline">"Wally's Adventures helps people discover the freedom, joy, and healing that comes with time spent in the outdoors—one backpack at a time."</p>
+            <div class="hero-buttons">
+                <a href="#offerings" class="cta-btn">Explore Adventures</a>
+                <a href="#story" class="cta-btn btn-secondary">Our Story</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story fade-in" id="story">
+        <div class="story-content">
+            <h2>How It Started</h2>
+            <div class="story-text">
+                <p><em>Wally's Adventures</em> didn't start in a boardroom or on a business plan. It started in the Middle East—three friends, boots in the sand, rifles slung over tired shoulders, talking about what life might look like after the chaos.</p>
+                
+                <p><em>In the middle of war, we dreamed of the woods.</em></p>
+                
+                <p>Combat had taken a toll—on our bodies, our minds, our sense of peace. But in the rare quiet moments, we'd talk about building something different. Not just for us, but for anyone carrying weight they didn't know how to set down.</p>
+                
+                <p>When we got back, we did what we always did when things got hard—we went outside. Into the woods, where it was quiet, raw, and real. We'd scream into the trees. We'd leave behind pain, anger, memories—like offerings to something bigger than us.</p>
+            </div>
+            
+            <div class="pullquote">
+                "And it worked. The forest gave us space to heal."
+            </div>
+            
+            <div class="story-text">
+                <p>That's when we knew: this wasn't just about us anymore. This was about everyone who needed what we'd found—a place to breathe, to feel human again, to remember that there's beauty worth fighting for.</p>
+                
+                <p>But here's the thing—good gear is expensive. And when you're dealing with your own battles, dropping thousands on equipment you might use once shouldn't be another burden to carry.</p>
+                
+                <p>So we started Wally's Adventures. We invest in professional-grade equipment and pack it right, so you can focus on what matters: getting out there and finding your peace. One fully loaded backpack at a time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission">
+        <div class="mission-content">
+            <h2>Why We Do This</h2>
+            <p>We believe everyone deserves access to the healing power of the outdoors—without the barrier of expensive gear.</p>
+            
+            <div class="mission-grid">
+                <div class="mission-item fade-in">
+                    <h3>Remove Barriers</h3>
+                    <p>Quality outdoor gear shouldn't be what stops you from getting the help you need. We make wilderness access affordable and accessible.</p>
+                </div>
+                <div class="mission-item fade-in">
+                    <h3>Proven Gear</h3>
+                    <p>Every piece of equipment is field-tested and battle-proven. We use what works, so you can trust your gear when it matters most.</p>
+                </div>
+                <div class="mission-item fade-in">
+                    <h3>Support the Mission</h3>
+                    <p>Every rental supports our work with veterans and first responders. Your adventure helps fund healing for those who've served.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Offer -->
+    <section class="offerings fade-in" id="offerings">
+        <div class="offerings-content">
+            <h2 class="section-title">Fully Packed. Ready to Go.</h2>
+            <p class="section-subtitle">We handle the gear, you handle the healing. Professional-grade equipment rentals for extended backpacking adventures.</p>
+            
+            <div class="offerings-grid">
+                <div class="offering-card">
+                    <h3>Complete Backpacking Systems</h3>
+                    <p>Everything you need for multi-day wilderness adventures, packed and ready. We've done the research, tested the gear, and put together systems that work.</p>
+                    <ul>
+                        <li>Premium backpacks (30-70L options)</li>
+                        <li>Lightweight shelters & sleeping systems</li>
+                        <li>Cooking gear & water filtration</li>
+                        <li>Weather-appropriate clothing layers</li>
+                        <li>Navigation & safety equipment</li>
+                    </ul>
+                </div>
+                
+                <div class="offering-card">
+                    <h3>Specialized Gear Packages</h3>
+                    <p>Need something specific? We offer targeted rental packages for different adventures, seasons, and skill levels.</p>
+                    <ul>
+                        <li>Winter camping gear</li>
+                        <li>Ultralight systems for experienced hikers</li>
+                        <li>Family-friendly group packages</li>
+                        <li>Photography & wildlife observation gear</li>
+                        <li>Extended expedition equipment</li>
+                    </ul>
+                </div>
+                
+                <div class="offering-card">
+                    <h3>The Wally's Difference</h3>
+                    <p>This isn't just gear rental—it's gear rental with purpose. Every pack comes with the knowledge that you're supporting a mission of healing.</p>
+                    <ul>
+                        <li>Thoroughly cleaned & inspected equipment</li>
+                        <li>Detailed gear guides & packing lists</li>
+                        <li>24/7 emergency support line</li>
+                        <li>Flexible rental periods</li>
+                        <li>Local delivery & pickup options</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <h2>Ready to Get Out There?</h2>
+            <p>Whether you're planning your first overnight or your hundredth, we've got the gear you need. No judgment, no pressure. Just quality equipment from people who understand why the outdoors matter.</p>
+            
+            <div class="contact-form fade-in">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="What should we call you?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="trip">Trip Details</label>
+                        <input type="text" id="trip" name="trip" placeholder="Where are you headed? How many days?">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">What Gear Do You Need?</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell us about your adventure and what equipment you're looking for. First time out? We'll help you get set up right." required></textarea>
+                    </div>
+                    <button type="submit" class="cta-btn" style="width: 100%; font-size: 1.1rem;">Get My Gear Quote</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo-footer">Wally's Adventures</div>
+            <p>&copy; 2025 Wally's Adventures. Healing happens one step at a time.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll animation for fade-in elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            
+            // Simple success message
+            alert(`Thank you ${name}. Your message has been sent. We'll reach out soon to start planning your adventure.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(45, 55, 72, 0.98)';
+            } else {
+                header.style.background = 'rgba(45, 55, 72, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
